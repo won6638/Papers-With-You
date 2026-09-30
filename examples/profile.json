@@ -1,0 +1,22 @@
+{
+  "categories": [
+    "cs.AI",
+    "cs.LG"
+  ],
+  "keywords": [
+    "graph neural networks"
+  ],
+  "exclude": [],
+  "since": "2024-01-01",
+  "until": "",
+  "max_results": 20,
+  "purpose": "research",
+  "description": "",
+  "output_dir": "",
+  "contact": "",
+  "auto_download": false,
+  "max_file_mb": 50,
+  "max_total_mb": 250,
+  "ids": [],
+  "schema_version": 1
+}
