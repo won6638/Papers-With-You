@@ -7,7 +7,7 @@
 
 A local-first arXiv paper collector with a questionnaire, preview/approval, validated downloads, resume, SQLite state and execution telemetry. The working name conflicts with existing services/projects, including [citeweave.com](https://citeweave.com/en) and [CiteWeave-RAG](https://github.com/Youn-17/CiteWeave-RAG). This is an independent implementation with no affiliation. Keep this repository private and revisit the name before public release. No package has been published.
 
-Targets: Python 3.12, Windows 10/11 x86-64 and Ubuntu 22.04/24.04 x86-64. Tested locally on Ubuntu 24.04.3, Python 3.12.14. Windows 10/11 and Ubuntu 22.04 are not yet verified. CI targets Ubuntu and Windows Server; passing Server CI is not a desktop OS certification.
+Targets: Python 3.12, Windows 10/11 x86-64 and Ubuntu 22.04/24.04 x86-64. Tested locally on Ubuntu 24.04.3, Python 3.12.14. Offline CI passed on Ubuntu 22.04/24.04 and Windows Server 2022. Windows 10/11 desktop execution is not yet verified. CI targets Ubuntu and Windows Server; passing Server CI is not a desktop OS certification.
 
 <!-- section: setup -->
 ## Install
@@ -54,7 +54,7 @@ The questionnaire collects categories, purpose, keyword phrases, excluded phrase
 
 Dates filter first submission, not revision date; results are sorted by last update. Purpose and free description are stored locally but do NOT affect ranking yet. If exact IDs are supplied for diagnostics, they override categories, keywords, exclusions and dates.
 
-Defaults: maximum 20 candidates (allowed 1–100), 50 MiB per file, 250 MiB received PDF traffic per collection session. Retries count toward the session traffic budget. Limits may be exceeded by at most one read block before stopping. This is not a lifetime disk quota. Automatic download is disabled. To deliberately skip future base-paper confirmation, edit the setting below; set it back to false to restore prompts. Future citation-expansion approval will be separate.
+Defaults: maximum 20 candidates (allowed 1–100), 50 MiB per file, 250 MiB shared received-traffic budget checked during collection; preceding search traffic in the same invocation and PDF retries count toward it. Retries count toward the session traffic budget. Limits may be exceeded by at most one read block before stopping. This is not a lifetime disk quota. Automatic download is disabled. To deliberately skip future base-paper confirmation, edit the setting below; set it back to false to restore prompts. Future citation-expansion approval will be separate.
 
 ```text
 "auto_download": false
@@ -114,3 +114,8 @@ arXiv PDFs and future corpora/models retain separate rights; our code license gr
 5. Explore LLM input, RAG, KG and GNN; consider a web service only after stabilization.
 
 Read [decisions](docs/DECISIONS.md) and [contribution rules](CONTRIBUTING.md). English and Korean README changes must ship together with the same features, defaults, limitations and evidence.
+
+<!-- section: compass -->
+## Project compass
+
+Read the [project compass (Korean)](docs/PROJECT_COMPASS.ko.md) for the detailed specification, decisions, evidence, limitations and next steps. Legacy output encodings escape unsupported characters instead of crashing. The current offline suite has 20 tests.
