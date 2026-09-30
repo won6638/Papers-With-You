@@ -1,7 +1,7 @@
 """Generated PDFs and synthetic Atom only; no external requests."""
 from contextlib import contextmanager
 from dataclasses import asdict
-from io import BytesIO
+from io import BytesIO, TextIOWrapper
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from urllib.error import HTTPError
@@ -124,6 +124,17 @@ class EngineTests(unittest.TestCase):
         with patch('citeweave.cli.search',return_value=(parse_feed(ATOM)[0],1)),patch('citeweave.cli.collect') as download,patch('sys.stdin.isatty',return_value=False):
             code=main(['run','--profile',str(profile),'--output',str(self.root/'cli')],app_dir=self.root)
         self.assertEqual(code,0); download.assert_not_called()
+    def test_legacy_output_encoding(self):
+        raw=BytesIO()
+        output=TextIOWrapper(raw,encoding='ascii',errors='strict')
+        try:
+            with patch('sys.stdout',output):
+                self.test_noninteractive_no_download()
+            output.flush()
+            self.assertIn(b'Candidates',raw.getvalue())
+            self.assertIn(b'\\u',raw.getvalue())
+        finally:
+            output.detach()
     def test_logs_hide_query_and_headers(self):
         r,p=self.run_with(); c,o=self.client(r,Response(pdf_bytes())); collect(self.store,r,c,self.profile); r.finish('complete')
         events=(r.directory/'events.jsonl').read_text(); self.assertNotIn('search_query',events); self.assertNotIn('User-Agent',events)
