@@ -107,6 +107,11 @@ def parser(app_dir):
 
 
 def main(argv=None,app_dir=None):
+    # Legacy redirected Windows streams may not encode Korean output.
+    # Preserve the selected encoding but escape unsupported characters safely.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, 'reconfigure'):
+            stream.reconfigure(errors='backslashreplace')
     app_dir=Path(app_dir or Path(__file__).resolve().parent.parent)
     args=parser(app_dir).parse_args(argv)
     store=None
