@@ -96,26 +96,8 @@ python scripts/check_readme.py
 ```
 
 <!-- section: license -->
-## License and contact
+## License
 
-Original code is source-available under PolyForm Noncommercial 1.0.0; this is not an OSI-approved open-source license. The standard [LICENSE](LICENSE) governs. It permits specified organizations under its own terms; commercial use outside its grants requires separate permission from relevant rights holders. See [contact](CONTACT.md), [third-party notices](THIRD_PARTY_NOTICES.md) and [license review](docs/LICENSE_REVIEW.md).
+CiteWeave is licensed under [PolyForm Noncommercial 1.0.0](LICENSE). Commercial uses outside the license terms require separate permission.
 
-Use this repository's Issues for questions and permission requests after the remote exists. While private, only invited collaborators can use it. No personal email has been invented. A confidential contact channel remains to be chosen before public release. An issue does not grant permission.
-
-arXiv PDFs and future corpora/models retain separate rights; our code license grants no paper redistribution rights. Do not commit downloaded PDFs, corpora, private profiles/logs or keys. Paying a future API provider does not automatically license paywalled papers. No paid provider is enabled.
-
-<!-- section: roadmap -->
-## Roadmap
-
-1. Broaden collection/recovery measurements and validate Windows 10/11 and Ubuntu 22.04.
-2. Add transparent keyword relevance baselines, then title/abstract semantic ranking.
-3. Diversify providers and implement one-hop citation expansion after policy review.
-4. Add a questionnaire-style desktop GUI over the same engine/profile schema.
-5. Explore LLM input, RAG, KG and GNN; consider a web service only after stabilization.
-
-Read [decisions](docs/DECISIONS.md) and [contribution rules](CONTRIBUTING.md). English and Korean README changes must ship together with the same features, defaults, limitations and evidence.
-
-<!-- section: compass -->
-## Project compass
-
-Read the [project compass (Korean)](docs/PROJECT_COMPASS.ko.md) for the detailed specification, decisions, evidence, limitations and next steps. Legacy output encodings escape unsupported characters instead of crashing. The current offline suite has 20 tests.
+See [Third-party notices](THIRD_PARTY_NOTICES.md) for dependency licenses.
