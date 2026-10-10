@@ -85,16 +85,6 @@ PDF 검증은 헤더·페이지 트리·읽을 수 있는 스트림을 확인하
 
 HTTP 클라이언트는 소켓 제한 20초, 전송 제한 확인 60초, 일시적 오류 최대 3회 시도를 사용합니다. Retry-After가 60초를 넘으면 조기 재시도 대신 오류로 작업을 미룹니다. PDF 리다이렉트는 승인된 HTTPS arXiv 호스트로 제한합니다.
 
-<!-- section: tests -->
-## 테스트와 근거
-
-오프라인 테스트는 동봉 논문 대신 생성한 PDF와 합성 메타데이터를 사용합니다. 문서 검사는 섹션 ID·명령 블록·인라인 기술 토큰을 비교하며 의미의 동등성은 별도 검토가 필요합니다. CI는 arXiv에 요청하지 않습니다. 정리한 실제 측정과 플랫폼 미검증 범위는 [검증 기록](docs/VERIFICATION.md)에 있습니다. 첫 2편 실험은 스모크 테스트이며 대표 성공률 벤치마크가 아닙니다.
-
-```text
-python -m unittest discover -s tests -v
-python scripts/check_readme.py
-```
-
 <!-- section: license -->
 ## 라이선스
 
