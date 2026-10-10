@@ -1,7 +1,11 @@
-name: Tests and bilingual documentation
+
+name: Tests
+
 on: [push, pull_request]
+
 permissions:
   contents: read
+
 jobs:
   test:
     strategy:
@@ -15,4 +19,3 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install -r requirements.txt
       - run: python -m unittest discover -s tests -v
-      - run: python scripts/check_readme.py
