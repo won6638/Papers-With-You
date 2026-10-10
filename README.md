@@ -85,16 +85,6 @@ Summary separates selected-paper acquisition from attempted-download validation 
 
 The HTTP client uses a 20-second socket timeout, a 60-second transfer deadline check and at most 3 attempts for transient errors. Retry-After over 60 seconds defers work with an error instead of retrying early. PDF redirects are restricted to approved HTTPS arXiv hosts.
 
-<!-- section: tests -->
-## Tests and evidence
-
-Offline tests use generated PDFs and synthetic metadata, not bundled papers. The documentation check compares section IDs, command blocks and inline technical tokens; human semantic review is also required. CI does not call arXiv. Sanitized real measurements and platform gaps are in [verification](docs/VERIFICATION.md). The initial two-paper experiment is a smoke test, not a representative success-rate benchmark.
-
-```text
-python -m unittest discover -s tests -v
-python scripts/check_readme.py
-```
-
 <!-- section: license -->
 ## License
 
