@@ -59,7 +59,7 @@ class ApplicationTests(unittest.TestCase):
         self.app.save_profile({'categories': ['cs.LG'], 'output_dir': 'data'}, path)
         with patch('citeweave.application.arxiv_search', return_value=([], 0)):
             result = self.app.search(path)
-        self.assertEqual(Path(result['output_dir']), path.parent / 'data')
+        self.assertEqual(Path(result['output_dir']), (path.parent / 'data').resolve())
 
     def test_invalid_inputs(self):
         with self.assertRaises(ValueError):
