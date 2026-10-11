@@ -20,7 +20,7 @@ def ask(label,default=''):
 def wizard(path):
     if path.exists() and ask('Overwrite profile? / 설정을 덮어쓸까? y/N','n').lower()!='y':
         return 0
-    print('CiteWeave — initial profile / 초기 설정')
+    print('Papers With You — initial profile / 초기 설정')
     print('Free description and purpose are stored only; no LLM or semantic ranking yet.\n자유 설명과 목적은 저장만 하며 아직 의미 검색에 사용하지 않아.')
     print('Use English query phrases; comma separates phrases. / 검색 구문은 영어로, 쉼표로 구분해줘.')
     split=lambda value:[s.strip() for s in value.split(',') if s.strip()]
@@ -85,7 +85,7 @@ def confirm(store,run,args,profile):
 
 
 def parser(app_dir):
-    p=argparse.ArgumentParser(description='CiteWeave private alpha / 비공개 알파 CLI')
+    p=argparse.ArgumentParser(description='Papers With You — Research Paper Collector')
     p.add_argument('--version',action='version',version=__version__)
     subs=p.add_subparsers(dest='command',required=True)
     q=subs.add_parser('init',help='Questionnaire / 설문 설정')
