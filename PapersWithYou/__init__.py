@@ -1,2 +1,2 @@
-"""CiteWeave local collection engine; no network activity on import."""
+"""Papers With You collection engine."""
 __version__ = "0.1.0a1"
