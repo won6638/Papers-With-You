@@ -59,7 +59,7 @@ def file_lock(path):
 
 class ArxivGate:
     def __init__(self, directory=None, interval=3.1):
-        self.directory = Path(directory or Path.home()/".citeweave"/"arxiv")
+        self.directory = Path(directory or Path.home()/".PapersWithYou"/"arxiv")
         self.interval = interval
 
     @contextmanager
@@ -87,7 +87,7 @@ class Client:
         self.gate = gate or ArxivGate()
         self.opener = opener or build_opener(SafeRedirect())
         self.sleep = sleep
-        self.user_agent = "CiteWeave-local-prototype/0.1.0a1" + (f" ({contact})" if contact else "")
+        self.user_agent = "PapersWithYou-local-prototype/0.1.0a1" + (f" ({contact})" if contact else "")
         self.bytes_received = 0
         self.total_limit = None
 
