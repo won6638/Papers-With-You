@@ -9,12 +9,13 @@ import json
 import unittest
 from unittest.mock import patch
 from pypdf import PdfWriter
-from citeweave.arxiv import parse_feed,query
-from citeweave.cli import positions, main
-from citeweave.model import Profile,Paper,digest
-from citeweave.net import Client,TransferError,allowed_url
-from citeweave.service import collect,validate_pdf
-from citeweave.store import Store,Run
+from PapersWithYou.arxiv import parse_feed, query
+from PapersWithYou.cli import positions, main
+from PapersWithYou.model import Profile, Paper, digest
+from PapersWithYou.net import Client, TransferError, allowed_url
+from PapersWithYou.service import collect, validate_pdf
+from PapersWithYou.store import Store, Run
+
 
 ATOM=b'''<feed xmlns="http://www.w3.org/2005/Atom" xmlns:o="http://a9.com/-/spec/opensearch/1.1/">
 <o:totalResults>1</o:totalResults><entry><id>http://arxiv.org/abs/2601.00001v2</id>
@@ -121,7 +122,7 @@ class EngineTests(unittest.TestCase):
         for paper in (p,other): self.assertTrue((self.root/'papers'/paper.stem/'paper.pdf').exists())
     def test_noninteractive_no_download(self):
         profile=self.root/'profile.json'; self.profile.save(profile)
-        with patch('citeweave.cli.search',return_value=(parse_feed(ATOM)[0],1)),patch('citeweave.cli.collect') as download,patch('sys.stdin.isatty',return_value=False):
+        with patch('PapersWithYou.cli.search',return_value=(parse_feed(ATOM)[0],1)),patch('PapersWithYou.cli.collect') as download,patch('sys.stdin.isatty',return_value=False):
             code=main(['run','--profile',str(profile),'--output',str(self.root/'cli')],app_dir=self.root)
         self.assertEqual(code,0); download.assert_not_called()
     def test_legacy_output_encoding(self):
