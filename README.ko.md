@@ -39,26 +39,26 @@ python3.12 -m venv .venv
 검색 조건 설정:
 
 ```bash
-python citeweave.py init
+python PapersWithYou.py init
 ```
 
 논문 검색 및 목록 확인:
 
 ```bash
-python citeweave.py search
+python PapersWithYou.py search
 ```
 
 논문 검색, 선택 및 다운로드:
 
 ```bash
-python citeweave.py run
+python PapersWithYou.py run
 ```
 
 실행 기록 확인 및 다운로드 재개:
 
 ```bash
-python citeweave.py status
-python citeweave.py resume --run-id RUN_ID
+python PapersWithYou.py status
+python PapersWithYou.py resume --run-id RUN_ID
 ```
 
 기본 다운로드 경로는 `downloads/`이며, 설정 예시는 [examples/profile.json](examples/profile.json)에서 확인할 수 있다.
