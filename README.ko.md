@@ -1,4 +1,4 @@
-# CiteWeave
+# Papers With You
 
 [English](README.md)
 
