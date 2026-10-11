@@ -13,4 +13,4 @@ license-files = ["LICENSE", "licenses/*.txt"]
 dependencies = ["pypdf==6.10.0"]
 
 [tool.setuptools.packages.find]
-include = ["citeweave*"]
+include = ["PapersWithYou*"]
