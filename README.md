@@ -2,7 +2,7 @@
 
 [한국어](README.ko.md)
 
-CiteWeave is a local command-line tool for finding and downloading research papers from arXiv.
+Papers With You is a local command-line tool for finding and downloading research papers from arXiv.
 
 Users can search by category, keywords, excluded terms, and submission dates, then select which papers to download.
 
