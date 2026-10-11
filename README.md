@@ -39,26 +39,26 @@ Run the following commands with your virtual environment's Python interpreter.
 Create a search profile:
 
 ```bash
-python citeweave.py init
+python PapersWithYou.py init
 ```
 
 Search and preview papers:
 
 ```bash
-python citeweave.py search
+python PapersWithYou.py search
 ```
 
 Search, select, and download papers:
 
 ```bash
-python citeweave.py run
+python PapersWithYou.py run
 ```
 
 Check previous runs or resume a download:
 
 ```bash
-python citeweave.py status
-python citeweave.py resume --run-id RUN_ID
+python PapersWithYou.py status
+python PapersWithYou.py resume --run-id RUN_ID
 ```
 
 The default download directory is `downloads/`. An example search profile is available in [examples/profile.json](examples/profile.json).
