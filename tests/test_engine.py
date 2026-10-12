@@ -15,6 +15,7 @@ from PapersWithYou.model import Profile, Paper, digest
 from PapersWithYou.net import Client, TransferError, allowed_url
 from PapersWithYou.service import collect, validate_pdf
 from PapersWithYou.store import Store, Run
+from PapersWithYou.naming import pdf_filename
 
 
 ATOM=b'''<feed xmlns="http://www.w3.org/2005/Atom" xmlns:o="http://a9.com/-/spec/opensearch/1.1/">
@@ -103,7 +104,7 @@ class EngineTests(unittest.TestCase):
         self.assertEqual(self.store.jobs(r.id)[0]['status'],'recovered')
     def test_corruption_refetch(self):
         r,p=self.run_with(); c,o=self.client(r,Response(pdf_bytes()),Response(pdf_bytes()))
-        collect(self.store,r,c,self.profile); (self.root/'papers'/p.stem/'paper.pdf').write_bytes(b'broken')
+        collect(self.store,r,c,self.profile); (self.root/'papers'/p.stem/pdf_filename(p)).write_bytes(b'broken')
         self.assertEqual(collect(self.store,r,c,self.profile),0); self.assertEqual(o.calls,2)
     def test_interrupt_resume(self):
         r,p=self.run_with(); c,o=self.client(r,KeyboardInterrupt())
@@ -119,7 +120,10 @@ class EngineTests(unittest.TestCase):
         other=Paper(**{**p.data(),'version':'v3','pdf_url':p.pdf_url.replace('v2','v3')})
         r2=Run(self.store,'test'); self.store.add(r2.id,[other]); self.store.select(r2.id,[1])
         c,o=self.client(r2,Response(pdf_bytes())); collect(self.store,r2,c,self.profile)
-        for paper in (p,other): self.assertTrue((self.root/'papers'/paper.stem/'paper.pdf').exists())
+        for paper in (p,other):
+            self.assertTrue(
+               (self.root/'papers'/paper.stem/pdf_filename(paper)).exists()
+            ) 
     def test_noninteractive_no_download(self):
         profile=self.root/'profile.json'; self.profile.save(profile)
         with patch('PapersWithYou.cli.search',return_value=(parse_feed(ATOM)[0],1)),patch('PapersWithYou.cli.collect') as download,patch('sys.stdin.isatty',return_value=False):
